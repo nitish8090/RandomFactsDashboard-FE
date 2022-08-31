@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -13,10 +13,10 @@ export class RegisterComponent implements OnInit {
 
   registrationForm = this.formBuilder.group({
     name: [''],
-    email: [''],
-  password:['']
+    email: ['', [Validators.required, Validators.email]],
+  password:['', Validators.required]
   })
-  isError = false;
+  error = '';
   
   constructor(
     private authService: AuthenticationService,
@@ -28,6 +28,9 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void{
+
+    if (this.registrationForm.valid){
+    
     this.authService.register(<User>this.registrationForm.value).subscribe(
       {
         next: (data)=>{
@@ -36,11 +39,15 @@ export class RegisterComponent implements OnInit {
         },
         error: (err)=>{
           if (err.status === 403){
-            this.isError = true
+            this.error = 'User already exists'
           }
         }
       }
     )
+  } else{
+    console.log(this.registrationForm.validator)
+    this.error = 'Form is blank or invalid'
+  }
   }
 
 }

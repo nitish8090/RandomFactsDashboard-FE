@@ -2,10 +2,13 @@
 
 <form (ngSubmit)="login()" [formGroup]="loginForm" class='loginForm'>
   <h1>Log In</h1> 
-  <div *ngIf="isError" class="error">Login Failed</div> 
+  <div *ngIf="error" class="error">{{error}}</div> 
   <div class="form-group">
       <label for="inputemail">Email address</label>
       <input type="email" class="form-control" formControlName="email" id="inputemail" aria-describedby="emailHelp" placeholder="Enter email">
+      <div [ngStyle]="{'display': 'block'}" *ngIf="!!this.loginForm.get('email')?.value && loginForm.get('email')?.errors" class="invalid-feedback">
+        Please enter valid email.
+      </div>
     </div>
     <div class="form-group">
       <label for="inputpassword">Password</label>

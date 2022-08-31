@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
@@ -13,11 +13,11 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class LoginComponent implements OnInit {
 
   loginForm = this.formBuilder.group({
-    email: ['', Validators.required],
-  password:['', Validators.required]
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required]
   })
-  isError = false;
-  
+  error = '';
+
   constructor(
     private authService: AuthenticationService,
     private formBuilder: FormBuilder,
@@ -28,20 +28,23 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    if(this.loginForm.valid){
-
-    this.authService.logIn(<User>this.loginForm.value).subscribe({
-      next: (data)=>{
-        localStorage.setItem('usertoken', data.access_token);
-        this.router.navigate(['/dashboard'])
-      },
-      error: (err)=>{
-        console.log(err)
-        this.isError = true;
-      }
-    })
-    this.loginForm.reset()
-  }
+    if (this.loginForm.valid) {
+      this.authService.logIn(<User>this.loginForm.value).subscribe({
+        next: (data) => {
+          localStorage.setItem('usertoken', data.access_token);
+          this.router.navigate(['/dashboard'])
+        },
+        error: (err) => {
+          console.log(err)
+          this.error = 'Login Failed';
+        }
+      })
+      this.loginForm.reset()
+    } else {
+      console.log(`Value-${!!this.loginForm.get('email')?.value}-sdf`)
+      console.log(this.loginForm.validator)
+      this.error = 'Credentials are blank.'
+    }
   }
 
 }

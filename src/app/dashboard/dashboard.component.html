@@ -1,6 +1,4 @@
-
-
-<div class="isLoggedIn" *ngIf="user">
+<div class="dashboard-component" *ngIf="user">
     <div class="nav-bar-ghost"></div>
 
     <div class="hello-text">
@@ -35,6 +33,10 @@
         </form>
     </div>
     </div>
-    <button (click)="logOut()" class="btn btn-success">Logout</button>
+
+    <div class="logout-button">
+        <button (click)="logOut()" class="btn btn-success">Logout</button>
+
+    </div>
 
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class ForgotPasswordComponent implements OnInit {
 
   forgotPasswordForm = this.formBuilder.group({
-    email: ['']
+    email: ['', Validators.required]
   })
 
   resetLink = '';
@@ -32,7 +32,7 @@ export class ForgotPasswordComponent implements OnInit {
           console.log(data)
           console.log(document.location)
 
-          this.resetLink = `${document.location.origin}/reset-password;resetCode=${data.reset_code}`
+          this.resetLink = `${document.location.origin}/preview/RandomFacts/reset-password;resetCode=${data.reset_code}`
         },
         error: (err)=>{
           console.log(err)

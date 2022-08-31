@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -12,11 +12,13 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class ResetPasswordComponent implements OnInit {
 
   resetPasswordForm = this.formBuilder.group({
-  password:['']
+    password: ['', Validators.required],
+    repeatPassword: ['', Validators.required]
   })
 
   resetCode = '';
-  
+  error = '';
+
   constructor(
     private authService: AuthenticationService,
     private formBuilder: FormBuilder,
@@ -36,20 +38,30 @@ export class ResetPasswordComponent implements OnInit {
 
   }
 
-  resetPassword(): void{
-    var user = <User>this.resetPasswordForm.value
-    user.reset_code = this.resetCode
+  resetPassword(): void {
+    if (this.resetPasswordForm.value.password !== this.resetPasswordForm.value.repeatPassword) {
+      this.error = 'Password are not same.'
+      return
+    }
 
-    this.authService.resetPassword(user).subscribe(
-      {
-        next: (data)=>{
-          console.log(data)
-          this.router.navigate(['/'])
-        },
-        error: (err)=>{
-          console.log(err)
+    if (this.resetPasswordForm.valid) {
+      var user = <User>this.resetPasswordForm.value
+      user.reset_code = this.resetCode
+
+      this.authService.resetPassword(user).subscribe(
+        {
+          next: (data) => {
+            console.log(data)
+            this.router.navigate(['/'])
+          },
+          error: (err) => {
+            console.log(err)
+            this.error = err
+          }
         }
-      }
-    )
+      )
+    } else {
+      this.error = 'Password cannot be blank'
+    }
   }
 }

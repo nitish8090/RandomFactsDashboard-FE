@@ -1,4 +1,4 @@
-.dashboard-component{
+.dashboard-component {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -44,6 +44,12 @@
     margin-top: 1em;
 }
 
-.dashboard-component > button {
+.logout-button {
     margin: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+.logout-button > button {
+    min-width: 200px;
 }
