@@ -1,0 +1,49 @@
+.dashboard-component{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background: rgb(174,238,222);
+    background: linear-gradient(90deg, rgba(174,238,222,1) 0%, rgba(151,233,148,1) 100%);
+}
+
+.nav-bar-ghost{
+    height: 65px;
+}
+
+.hello-text{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0em 2em 0;
+}
+
+.fact-section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.fact-section > * {
+    flex: 1;
+    min-width: 18rem;
+    margin: 0.5em;
+}
+
+.new-fact-section{
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+}
+.new-fact-section-wrapper{
+    max-width: 700px;
+    flex: 1;
+}
+.factForm > *{
+    margin-top: 1em;
+}
+
+.dashboard-component > button {
+    margin: 1em;
+}

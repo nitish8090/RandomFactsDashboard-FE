@@ -1,0 +1,20 @@
+
+.other-login-components{
+    margin: 2em 2em 0;
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+
+.error{
+    color: red;
+    text-align: center;
+}
+
+.loginForm > *{
+    margin: 1em;
+}
+
+.loginForm > h1 {
+    text-align: center;
+}

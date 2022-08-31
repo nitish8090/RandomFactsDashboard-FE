@@ -1,0 +1,28 @@
+.registration-component{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.registration-component > * {
+    flex: 1;
+    min-width: 20em;
+}
+
+.error {
+    color: red;
+}
+
+.registrationForm{
+    min-width: 200px;
+}
+
+.registrationForm > *{
+    margin: 1em;
+}
+
+.other-login-components{
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+}

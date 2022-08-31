@@ -1,0 +1,40 @@
+
+
+<div class="isLoggedIn" *ngIf="user">
+    <div class="nav-bar-ghost"></div>
+
+    <div class="hello-text">
+        
+        <h1>Hi! {{user.name || 'User'}}</h1>
+        <h4>{{user.email}}</h4>
+
+        Here are {{user.facts.length}} random facts about you:
+    </div>
+
+    <div class="fact-section">
+        <div class="card" *ngFor="let fact of user.facts; let i = index">
+            <div class="card-body">
+                <h5 class="card-title">Fact #{{i+1}}</h5>
+                <p class="card-text">{{fact.fact_text}}</p>
+                <a class="card-link" routerLink="." (click)="deleteFact(fact.id)">Delete</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="new-fact-section">
+        <div class="new-fact-section-wrapper">
+
+        
+        <h2>Want to add new facts?</h2>
+        <form (ngSubmit)="postFact()" [formGroup]="factForm" class="factForm">
+            <div class="form-group">
+                <label for="formText">New Fact</label>
+                <input class="form-control" formControlName="fact_text" id="formText">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    </div>
+    <button (click)="logOut()" class="btn btn-success">Logout</button>
+
+</div>

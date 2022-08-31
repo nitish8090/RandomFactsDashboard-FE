@@ -1,0 +1,24 @@
+
+
+<form (ngSubmit)="login()" [formGroup]="loginForm" class='loginForm'>
+  <h1>Log In</h1> 
+  <div *ngIf="isError" class="error">Login Failed</div> 
+  <div class="form-group">
+      <label for="inputemail">Email address</label>
+      <input type="email" class="form-control" formControlName="email" id="inputemail" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="inputpassword">Password</label>
+      <input type="password" class="form-control" formControlName="password" id="inputpassword" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <div class="other-login-components">
+    New User?
+      <button class="btn btn-primary" routerLink="./register" >Register</button>
+  
+    Old User?
+    <button class="btn btn-primary" routerLink="./forgot-password">Forgot Password</button>
+  </div>
+ 
