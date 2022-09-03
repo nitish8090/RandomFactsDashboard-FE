@@ -16,10 +16,14 @@ export class NavBarComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    this.router.events.subscribe((res) => { 
+      this.isLoggedIn = !!localStorage.getItem('usertoken');;
+  })
   }
 
   logOut(): void{
     localStorage.removeItem('usertoken')
+    localStorage.removeItem('is_rf_admin')
     this.router.navigate(['/'])
   }
 

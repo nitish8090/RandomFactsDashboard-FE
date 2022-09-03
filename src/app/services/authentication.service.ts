@@ -33,4 +33,8 @@ export class AuthenticationService {
   loggedIn() {
     return !!localStorage.getItem('usertoken')
   }
+
+  isAdmin() {
+    return !!localStorage.getItem('is_rf_admin')
+  }
 }

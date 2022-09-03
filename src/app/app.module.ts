@@ -20,6 +20,8 @@ import { RegisterComponent } from './login-page/register/register.component';
 import { ForgotPasswordComponent } from './login-page/forgot-password/forgot-password.component';
 import { AdminGuard } from './admin.guard';
 import { ResetPasswordComponent } from './login-page/reset-password/reset-password.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,9 @@ import { ResetPasswordComponent } from './login-page/reset-password/reset-passwo
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    UserProfileComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,

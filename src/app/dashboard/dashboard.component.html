@@ -1,20 +1,26 @@
 <div class="dashboard-component" *ngIf="user">
     <div class="nav-bar-ghost"></div>
 
-    <div class="hello-text">
-        
-        <h1>Hi! {{user.name || 'User'}}</h1>
-        <h4>{{user.email}}</h4>
-
-        Here are {{user.facts.length}} random facts about you:
+    <div class="user-info">
+        <div class="hello-text">
+            <h1 class="position-relative">Hi! {{user.name || 'User'}} <span *ngIf="isAdmin" class="badge rounded-pill bg-danger">Admin</span>
+            </h1>
+            <h4>{{user.email}}</h4>
+            <span>
+                <button routerLink="./profile" class="btn btn-light">View Profile</button>
+                <button *ngIf="isAdmin" routerLink="../admin-panel" class="btn btn-dark">Admin Panel</button>
+            </span>
+            <p *ngIf="user.facts">Here are <b>{{user.facts.length}}</b> random facts about you:</p>
+        </div>
     </div>
+    
 
     <div class="fact-section">
         <div class="card" *ngFor="let fact of user.facts; let i = index">
             <div class="card-body">
                 <h5 class="card-title">Fact #{{i+1}}</h5>
                 <p class="card-text">{{fact.fact_text}}</p>
-                <a class="card-link" routerLink="." (click)="deleteFact(fact.id)">Delete</a>
+                <a routerLink="." (click)="deleteFact(fact.id)" class="card-link btn btn-danger">Delete</a>
             </div>
         </div>
     </div>
@@ -32,11 +38,6 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-    </div>
-
-    <div class="logout-button">
-        <button (click)="logOut()" class="btn btn-success">Logout</button>
-
     </div>
 
 </div>

@@ -1,0 +1,27 @@
+.nav-bar-ghost{
+    height: 66px;
+}
+
+.site-navigation{
+    margin: 1em;
+}
+
+.create-button {
+    margin: 0 1em 0;
+}
+
+.status-message{
+    margin: 1em;
+}
+
+.admin-panel{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.admin-panel > * {
+    flex: 1;
+    min-width: 18rem;
+    margin: 0.5em;
+}

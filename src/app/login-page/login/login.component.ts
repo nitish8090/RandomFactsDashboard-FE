@@ -32,6 +32,11 @@ export class LoginComponent implements OnInit {
       this.authService.logIn(<User>this.loginForm.value).subscribe({
         next: (data) => {
           localStorage.setItem('usertoken', data.access_token);
+          if (data.is_rf_admin) {
+            localStorage.setItem('is_rf_admin', 'true')
+          } else {
+            localStorage.removeItem('is_rf_admin')
+          }
           this.router.navigate(['/dashboard'])
         },
         error: (err) => {

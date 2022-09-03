@@ -1,5 +1,6 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Random Facts</a>
+    <button *ngIf="isLoggedIn" class="btn btn-primary profile-button" (click)="logOut()" type="button">Logout</button>
   </div>
 </nav>

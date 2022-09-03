@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Facts, User } from '../interfaces/user';
+import { AuthenticationService } from '../services/authentication.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -11,17 +12,24 @@ import { UserService } from '../services/user.service';
 })
 export class DashboardComponent implements OnInit {
 
-  user!: User;
+  user: User = <User>{};
   factForm = this.formBuilder.group({
     fact_text: [''],
-  })
+  });
+  isAdmin = false;
 
   constructor(
     private userService: UserService,
+    private authService: AuthenticationService,
     private router: Router,
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.refreshUserDetails();
+    this.isAdmin = this.authService.isAdmin()
+  }
+
+  refreshUserDetails(): void{
     this.userService.getUserFacts().subscribe({
       next: (data)=>{
         this.user = data
@@ -39,17 +47,12 @@ export class DashboardComponent implements OnInit {
   postFact(): void{
     this.userService.postFact(<Facts>this.factForm.value, this.user.id).subscribe({
     })
-    this.ngOnInit()
+    this.refreshUserDetails()
   }
 
   deleteFact(fact_id: any): void{
     this.userService.deleteFact(this.user.id, fact_id).subscribe()
-    this.ngOnInit()
-  }
-
-  logOut(): void{
-    localStorage.removeItem('usertoken')
-    this.router.navigate(['/'])
+    this.refreshUserDetails()
   }
 
 }

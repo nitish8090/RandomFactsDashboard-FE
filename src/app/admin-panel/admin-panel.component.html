@@ -1,0 +1,33 @@
+<div class="nav-bar-ghost"></div>
+
+<nav aria-label="breadcrumb" class='site-navigation'>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
+    <li class="breadcrumb-item active">Admin Panel</li>
+  </ol>
+</nav>
+
+<div class="create-button">
+  <button routerLink="./create" class="card-link btn btn-primary">Create</button>
+</div>
+
+<div class="status-message">
+  <div *ngIf='successMessage' class="alert alert-success" role="alert">
+    {{successMessage}}
+  </div>
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    {{errorMessage}}
+  </div>
+</div>
+
+
+<div class="admin-panel">
+    <div class="card" style="width: 18rem;" *ngFor="let user of users">
+        <div class="card-body">
+          <h5 class="card-title">#{{user.id}} {{user.name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{user.email}}</h6>
+          <button [routerLink]="['./profile', {id: user.id}]" class="card-link btn btn-primary">Edit</button>
+          <button (click)="deleteUser(user.id)" class="card-link btn btn-danger">Delete</button>
+        </div>
+      </div>
+</div>
