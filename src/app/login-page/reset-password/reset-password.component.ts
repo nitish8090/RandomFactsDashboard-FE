@@ -56,7 +56,7 @@ export class ResetPasswordComponent implements OnInit {
           },
           error: (err) => {
             console.log(err)
-            this.error = err
+            this.error = err.error
           }
         }
       )
