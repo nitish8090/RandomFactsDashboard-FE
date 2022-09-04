@@ -8,7 +8,7 @@
             <h4>{{user.email}}</h4>
             <span>
                 <button routerLink="./profile" class="btn btn-light">View Profile</button>
-                <button *ngIf="isAdmin" routerLink="../admin-panel" class="btn btn-dark">Admin Panel</button>
+                <button *ngIf="isAdmin" routerLink="../admin-panel" class="btn btn-dark admin-panel-button">Admin Panel</button>
             </span>
             <p *ngIf="user.facts">Here are <b>{{user.facts.length}}</b> random facts about you:</p>
         </div>

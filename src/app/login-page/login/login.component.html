@@ -1,23 +1,10 @@
 
 
-<form (ngSubmit)="login()" [formGroup]="loginForm" class='loginForm'>
+
+
+<!-- <form (ngSubmit)="login()" [formGroup]="loginForm" class='loginForm'>
   <h1>Log In</h1> 
-  <p>For demo purposes, use </p>
-  <table class="table table-dark">
-    <thead>
-      <tr>
-        <th scope="col">Email</th>
-        <th scope="col">Password</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>admin@admin.com</td>
-        <td>admin</td>
-      </tr>
-    </tbody>
-  </table>
-  <div *ngIf="error" class="error">{{error}}</div> 
+  
   <div class="form-group">
       <label for="inputemail">Email address</label>
       <input type="email" class="form-control" formControlName="email" id="inputemail" aria-describedby="emailHelp" placeholder="Enter email">
@@ -30,13 +17,53 @@
       <input type="password" class="form-control" formControlName="password" id="inputpassword" placeholder="Password">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  </form> -->
 
-  <div class="other-login-components">
-    New User?
-      <button class="btn btn-primary" routerLink="./register" >Register</button>
-  
-    Old User?
-    <button class="btn btn-primary" routerLink="./forgot-password">Forgot Password</button>
-  </div>
- 
+<div class="login-box">
+  <h2>Login</h2>
+  <div *ngIf="error" class="error">{{error}}</div>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="user-box">
+      <input type="text" name="" required="" formControlName="email">
+      <label>Email</label>
+      <div [ngStyle]="{'display': 'block'}"
+        *ngIf="!!this.loginForm.get('email')?.value && loginForm.get('email')?.errors" class="invalid-feedback">
+        Please enter valid email.
+      </div>
+    </div>
+    <div class="user-box">
+      <input type="password" name="" required="" formControlName="password">
+      <label>Password</label>
+    </div>
+    <button type="submit">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Submit
+    </button>
+  </form>
+</div>
+
+<div class="login-box">
+  New User?
+  <form>
+    <button routerLink="./register">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Register
+    </button>
+  </form>
+  <p>Old User?</p>
+  <form>
+    <button routerLink="./forgot-password">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Forgot Password
+    </button>
+  </form>
+</div>

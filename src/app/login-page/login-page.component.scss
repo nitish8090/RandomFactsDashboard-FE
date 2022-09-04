@@ -4,8 +4,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 
-    background: rgb(174,238,222);
-    background: radial-gradient(circle, rgba(174,238,222,1) 0%, rgba(148,187,233,1) 100%);
+    background: linear-gradient(#141e30, #243b55);
 }
 
+.variable-forms{
+    margin-top: 5rem;
+}
+
+.introduction{
+    // display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2em;
+    color: white;
+    // width: min(100%, 500px);
+}
+
+
+.table {
+    color: #03e9f4;
+}

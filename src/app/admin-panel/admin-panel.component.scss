@@ -1,9 +1,14 @@
+.admin-panel-component{
+    min-height: 100vh;
+}
 .nav-bar-ghost{
     height: 66px;
 }
 
 .site-navigation{
-    margin: 1em;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    background: rgba($color: #000000, $alpha: 0.3);
 }
 
 .create-button {

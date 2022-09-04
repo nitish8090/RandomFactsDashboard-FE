@@ -1,4 +1,29 @@
-<div class="login-page-component">
-    <router-outlet></router-outlet>
+<div class="nav-bar-ghost"></div>
 
-</div>
+<div class="login-page-component">
+    <div class="variable-forms">
+        <router-outlet class=""></router-outlet>
+    </div>
+    <div class="introduction">
+        <h1>Project: Random Facts</h1>
+        <p>This is a demo project for demonstrating Role based user access.</p>
+        <p>For admin authentication, use:</p>
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>admin@admin.com</td>
+                    <td>admin</td>
+                </tr>
+            </tbody>
+        </table>
+        <ul>
+            <li>Newly added user will be non-admin users.</li>
+            <li>To make them admin, login from admin account and make them adminn users.</li>
+        </ul>
+    </div>

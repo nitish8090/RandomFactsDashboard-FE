@@ -11,11 +11,12 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class ForgotPasswordComponent implements OnInit {
 
   forgotPasswordForm = this.formBuilder.group({
-    email: ['', Validators.required]
+    email: ['', [Validators.required, Validators.email]]
   })
 
   resetLink = '';
   isError = false;
+  error = '';
   
   constructor(
     private authService: AuthenticationService,
@@ -36,6 +37,7 @@ export class ForgotPasswordComponent implements OnInit {
         },
         error: (err)=>{
           console.log(err)
+          this.error = 'User not found'
           this.isError = true
         }
       }
